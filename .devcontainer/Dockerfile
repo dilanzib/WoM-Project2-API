@@ -19,3 +19,9 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+RUN curl https://cli-assets.heroku.com/install.sh | sh \ 
+   && ln -sf /usr/share/zoneinfo/Europe/Helsinki /etc/localtime \
+   && su vscode -c "git config --global user.name 'devcontainer'" \ 
+   && su vscode -c "git config --global user.email 'devcontainer@localhost'" \
+   && su vscode -c "curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash" \
+   && su vscode -c "echo '. ~/.git-completion.bash' >> ~/.bashrc" 
