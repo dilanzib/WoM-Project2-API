@@ -1,29 +1,56 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.194.3/containers/javascript-node
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.194.3/containers/python-3
 {
-	"name": "Node.js",
+	"name": "Python 3",
 	"build": {
 		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 16, 14, 12.
-		// Append -bullseye or -buster to pin to an OS version.
-		// Use the -bullseye variants if you are on a M1 mac.
-		"args": { "VARIANT": "16" }
+		"context": "..",
+		"args": { 
+			// Update 'VARIANT' to pick a Python version: 3, 3.6, 3.7, 3.8, 3.9
+			"VARIANT": "3.9",
+			// Options
+			"NODE_VERSION": "16"
+		}
 	},
 
 	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+	"settings": { 
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.languageServer": "Pylance",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+		"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint"
+	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"dbaeumer.vscode-eslint"
+		"ms-python.python",
+		"ms-python.vscode-pylance"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	// "postCreateCommand": "pip3 install --user -r requirements.txt",
+
+	"postCreateCommand": "pip3 install --user -r requirements.txt && [ -f '.env' ] && echo 1 || echo 'HELLO=hello-from-env' > .env",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "node"
+	"remoteUser": "vscode",
+	
+	// Environment variables for the container
+	"containerEnv": { "FLASK_APP": "app.main", "FLASK_ENV": "production"  },
+
+	// Environment variables for the container when opened in VSCode
+	"remoteEnv": { "FLASK_ENV": "development" },
+	
 }
