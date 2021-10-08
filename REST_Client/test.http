@@ -1,8 +1,21 @@
-@remoteUrl=http://127.0.0.1:5000/ 
+@baseUrl=http://127.0.0.1:5000/ 
 
 
 ###
-GET {{remoteUrl}}
+GET {{baseUrl}}
 
 ### 
-GET {{remoteUrl}}/notes
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "email": "john@doe.com"  
+}
+
+###
+PUT {{baseUrl}}
+Content-Type: application/json
+
+
+### 
+GET {{baseUrl}}/notes
