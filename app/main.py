@@ -28,7 +28,7 @@ class Services(db.Model):
 
 
 # Skapar inloggningen och får ut token variabeln
-# Den "funkar" ännu inte då det står {"accessToken":"...."}
+# Den "funkar" ännu inte då den skriver ut {"accessToken":"...."}
 # måste alltså först få bort accessToken, och detta görs i projekt1
 try:
     url = 'https://wom-project1.azurewebsites.net/users/login'  
