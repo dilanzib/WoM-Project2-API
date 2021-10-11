@@ -2,20 +2,27 @@
 
 
 ###
-GET {{baseUrl}}
+GET {{baseUrl}}/services
 
 ### 
-POST {{baseUrl}}
+POST {{baseUrl}}/services
 Content-Type: application/json
 
 {
-  "email": "john@doe.com"  
+  "service": "Make dinner for a person"  
 }
 
 ###
-PUT {{baseUrl}}
+PUT {{baseUrl}}/services/4
 Content-Type: application/json
+
+{
+    "service": "Clean the garage"  
+}
 
 
 ### 
-GET {{baseUrl}}/notes
+DELETE {{baseUrl}}/services/3
+
+### Får stugorna från Projekt1 - API
+GET http://127.0.0.1:5000/cabins

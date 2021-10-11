@@ -1,0 +1,13 @@
+#Projekt 1 snurrae på
+@baseUrl=https://wom-project1.azurewebsites.net/
+
+
+###Log in to cabins
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "email": "kraakan@krakmail.com",
+    "password": "hejhej123"
+}
+

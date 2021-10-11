@@ -11,6 +11,24 @@ pip freeze > requirements.txt
 
 pip install -r requirements.txt   --> Installera allt de vi har i requirements.txt
 
-
-
 När man gör Flask , använder man funktionen Jsonify
+
+
+Del1.  Få en lista på de stugor en användare själv äger
+Del2.  Information av olika tjänster och beställning av dem    
+          /orders       /services 
+
+Services
+*  GET a list of services
+*  POST a type of service
+*  PATCH a type of service
+*  DELETE a type of service
+
+Orders
+*  GET all orders for cabins you own
+*  POST an order for a specified cabin
+
+Del3. Integrationsbit: en request som gör en andrahands request till Projekt1.
+Om man in den nya APIn kör GET /cabins med en giltig JWT token, så gör den en ny request till projekt1/cabins/owned och visar det innehållet.
+
+Del4. Front end till appen: Desktop app —> Electron.js
