@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)   # Skapar databas instans
 
-
+# TODO: Ändra så att token kommer från electron
 cabins_token = os.environ.get('CABINS_TOKEN')
 
 #Service datamodell
@@ -30,28 +30,38 @@ class Services(db.Model):
 # Skapar inloggningen och får ut token variabeln
 # Den "funkar" ännu inte då den skriver ut {"accessToken":"...."}
 # måste alltså först få bort accessToken, och detta görs i projekt1
-try:
-    url = 'https://wom-project1.azurewebsites.net/users/login'  
-    header = { 'Content-Type': 'application/json' }
-    body = {  "email": "kraakan@krakmail.com", "password": os.environ.get('CABINS_PASSWORD')}
+
+# Här hämtas en jwt token från databsen (om jag förstått rätt)
+# men vi vill få den från front-enden. Sparar ändå koden i fall
+# den kan användas för att få en ny kod jwt till testning
+
+# try:
+#     # 'https://wom-project1.azurewebsites.net/cabins/owned'
+#     url = 'localhost:3030/cabins/owned'
+#     header = { 'Content-Type': 'application/json',
+#             'Authorization': cabins_token}
     
-    response = requests.post(url, headers=header, json=body)
+#     response = requests.post(url, headers=header, json=body)
 
-    #cabins_token = response.content.decode('utf-8')
-    print("Token: {}".format(response.content.decode('utf-8')))
+#     #cabins_token = response.content.decode('utf-8')
+#     print("Token: {}".format(response.content.decode('utf-8')))
 
-except Exception as e:
-    print(e)
-
-
+# except Exception as e:
+#     print(e)
 
 
-#Hämta stugorna från Projekt 1 
-@app.route("/cabins")
+
+
+#Hämta användarens stugor från Projekt 1 
+@app.route("/cabins/owned")
 def cabins():
-    print("GET Cabins")
-    url = 'https://wom-project1.azurewebsites.net/cabins'  
-    header = { 'Authorization': 'Bearer {}'.format(cabins_token) }
+    print("GET My cabins")
+    # 'https://wom-project1.azurewebsites.net/cabins/owned'
+    url = 'http://127.0.0.1:3030/cabins/owned'
+    print(request.headers)
+    # TODO: hämta jwt från request i stället
+    token = request.headers['Authorization']
+    header = { 'Authorization': 'Bearer {}'.format(token) }
     
     response = requests.get(url, headers=header)
     return jsonify(response.json())

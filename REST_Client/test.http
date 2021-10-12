@@ -1,7 +1,12 @@
 @baseUrl=http://127.0.0.1:5000/ 
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTU3NTFlYWQ3NWYxNzg5M2JjZWM0NzMiLCJlbWFpbCI6ImtyYWFrYW5Aa3Jha21haWwuY29tIiwiaWF0IjoxNjM0MDY4MjMwLCJleHAiOjE2MzY2NjAyMzB9.VpnFgaOfbcpkHVOYQbRDp6q3VCAWo8uZGn8htEsO_bU
 
 ###
+GET {{baseUrl}}/cabins/owned
+Content-Type: application/json
+Authorization: {{token}}
+
+### 
 GET {{baseUrl}}/services
 
 ### 
@@ -25,4 +30,4 @@ Content-Type: application/json
 DELETE {{baseUrl}}/services/3
 
 ### Får stugorna från Projekt1 - API
-GET http://127.0.0.1:5000/cabins
+GET http://127.0.0.1:3030/cabins

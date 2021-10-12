@@ -3,11 +3,7 @@
 
 
 ###Log in to cabins
-POST {{baseUrl}}
+POST {{baseUrl}}/cabins/owned
 Content-Type: application/json
 
-{
-    "email": "kraakan@krakmail.com",
-    "password": "hejhej123"
-}
 
