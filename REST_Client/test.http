@@ -3,7 +3,7 @@
 #https://shielded-shelf-90510.herokuapp.com
 #http://127.0.0.1:5000
 
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY2OTlkMzcwMmQyNzdlOGE1YmQzMGQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjM0MTE3Mzg1LCJleHAiOjE2MzkzMDEzODV9.G9BQk7MhuzvMRowI_x20lgPzfRwTjshlUV3NjfPN7z0
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY2OTlkMzcwMmQyNzdlOGE1YmQzMGQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjM0MTQ2OTIwLCJleHAiOjE2MzkzMzA5MjB9.nhgJEjjxQFRwXqnsu5O9h0jfTPclGL2OHP7QvDO5oCI
 
 ###
 GET {{baseUrl}}
@@ -33,7 +33,7 @@ PUT {{baseUrl}}/orders/5
 Content-Type: application/json
 
 {
-  "order_date": "02-10-2021" 
+  "order_date": "01-01-2021" 
 }
 
 
