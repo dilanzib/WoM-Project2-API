@@ -1,4 +1,4 @@
-@baseUrl=https://shielded-shelf-90510.herokuapp.com
+@baseUrl=http://127.0.0.1:5000
 
 #https://shielded-shelf-90510.herokuapp.com
 #http://127.0.0.1:5000
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ###
-PUT {{baseUrl}}/services/1
+PUT {{baseUrl}}/services/4
 Content-Type: application/json
 
 {
