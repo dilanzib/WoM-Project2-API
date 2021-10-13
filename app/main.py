@@ -14,8 +14,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)   # Skapar databas instans
 
+
 # TODO: Ändra så att token kommer från electron
 cabins_token = os.environ.get('CABINS_TOKEN')
+
 
 #Service datamodell
 class Services(db.Model):
@@ -27,44 +29,43 @@ class Services(db.Model):
         return '<Services {}>'.format(self.service)
 
 
-# Skapar inloggningen och får ut token variabeln
-# Den "funkar" ännu inte då den skriver ut {"accessToken":"...."}
-# måste alltså först få bort accessToken, och detta görs i projekt1
 
-# Här hämtas en jwt token från databsen (om jag förstått rätt)
+# Skapar automatiskt en inlogging till användaren "test@gmail.com" och ger ut en token när man kör Flask run 
 # men vi vill få den från front-enden. Sparar ändå koden i fall
-# den kan användas för att få en ny kod jwt till testning
+# den kan användas för att få en ny kod jwt till testning2
 
-# try:
-#     # 'https://wom-project1.azurewebsites.net/cabins/owned'
-#     url = 'localhost:3030/cabins/owned'
-#     header = { 'Content-Type': 'application/json',
-#             'Authorization': cabins_token}
-    
-#     response = requests.post(url, headers=header, json=body)
+'''
+try:
+    url = 'https://wom-project1.azurewebsites.net/users/login'  
+    header = { 'Content-Type': 'application/json' }
+    body = {  "email": "test@gmail.com",  "password": os.environ.get('CABINS_PASSWORD')}
 
-#     #cabins_token = response.content.decode('utf-8')
-#     print("Token: {}".format(response.content.decode('utf-8')))
+    response = requests.post(url, headers=header, json=body)
 
-# except Exception as e:
-#     print(e)
+    cabins_token = response.content.decode('utf-8')
+    print("Token: {}".format(response.content.decode('utf-8')))
 
-
+except Exception as e:
+    print(e)
+'''
 
 
 #Hämta användarens stugor från Projekt 1 
 @app.route("/cabins/owned")
 def cabins():
     print("GET My cabins")
-    # 'https://wom-project1.azurewebsites.net/cabins/owned'
-    url = 'http://127.0.0.1:3030/cabins/owned'
+    url = 'https://wom-project1.azurewebsites.net/cabins/owned'
     print(request.headers)
-    # TODO: hämta jwt från request i stället
+    # todo: hämta jwt från request i stället
     token = request.headers['Authorization']
     header = { 'Authorization': 'Bearer {}'.format(token) }
     
     response = requests.get(url, headers=header)
+    
     return jsonify(response.json())
+
+
+
 
 
 # Hämta och skapa services
@@ -91,6 +92,7 @@ def index():
         ret = ["Added a new service "]
 
     return jsonify(ret)
+
 
 
 # Ändra och radera services med ID

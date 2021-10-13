@@ -3,7 +3,10 @@
 
 
 ###Log in to cabins
-POST {{baseUrl}}/cabins/owned
+POST {{baseUrl}}/users/login
 Content-Type: application/json
 
-
+{
+    "email": "test@gmail.com",
+    "password": "test123"
+}
