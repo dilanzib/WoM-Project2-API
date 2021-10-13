@@ -49,6 +49,13 @@ except Exception as e:
     print(e)
 '''
 
+# Default route to / app
+@app.route("/", methods = ['GET'])
+def index():
+    if request.method == 'GET':
+        return 'Stugunderhållstjänsten'
+
+
 
 #Hämta användarens stugor från Projekt 1 
 @app.route("/cabins/owned")
@@ -63,16 +70,6 @@ def cabins():
     response = requests.get(url, headers=header)
     
     return jsonify(response.json())
-
-
-# Default route to / app
-@app.route("/", methods = ['GET'])
-def index():
-    ret = []
-    if request.method == 'GET':
-        ret = ["Stugunderhållstjänsten"]
-
-    return jsonify(ret)
 
 
 # Hämta och skapa services
