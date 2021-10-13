@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)   # Skapar databas instans
 
 
-# TODO: Ändra så att token kommer från electron
+# todo Ändra så att token kommer från electron
 cabins_token = os.environ.get('CABINS_TOKEN')
 
 
@@ -65,11 +65,19 @@ def cabins():
     return jsonify(response.json())
 
 
+# Default route to / app
+@app.route("/", methods = ['GET'])
+def index():
+    ret = []
+    if request.method == 'GET':
+        ret = ["Stugunderhållstjänsten"]
+
+    return jsonify(ret)
 
 
 # Hämta och skapa services
 @app.route("/services", methods = ['GET', 'POST'])
-def index():
+def services():
     ret = [] 
 
     if request.method == 'GET':

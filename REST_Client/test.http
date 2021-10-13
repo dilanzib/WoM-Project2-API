@@ -1,6 +1,9 @@
 @baseUrl=http://127.0.0.1:5000/ 
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY2OTlkMzcwMmQyNzdlOGE1YmQzMGQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjM0MTE3Mzg1LCJleHAiOjE2MzkzMDEzODV9.G9BQk7MhuzvMRowI_x20lgPzfRwTjshlUV3NjfPN7z0
 
+###
+GET {{baseUrl}}
+
 ### Får stugorna från Projekt1 - API
 GET {{baseUrl}}/cabins/owned
 Authorization: {{token}}
@@ -14,11 +17,11 @@ POST {{baseUrl}}/services
 Content-Type: application/json
 
 {
-  "service": "Eat dinner"  
+  "service": "Eat dinner with the owner"  
 }
 
 ###
-PUT {{baseUrl}}/services/4
+PUT {{baseUrl}}/services/1
 Content-Type: application/json
 
 {
@@ -27,5 +30,5 @@ Content-Type: application/json
 
 
 ### 
-DELETE {{baseUrl}}/services/3
+DELETE {{baseUrl}}/services/2
 
