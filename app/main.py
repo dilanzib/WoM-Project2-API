@@ -24,16 +24,21 @@ class Services(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     service = db.Column(db.String(), nullable=False)
     updated_at = db.Column(db.DateTime(), default=db.func.now(), onupdate=db.func.now())
+    orders = db.relationship('Order', backref='services')
 
     def __refr__(self):
         return '<Services {}>'.format(self.service)
 
+#Order datamodell 
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    order_date = db.Column(db.String(), nullable=False) 
+    services_id = db.Column(db.Integer, db.ForeignKey('services.id'))
 
 
 # Skapar automatiskt en inlogging till användaren "test@gmail.com" och ger ut en token när man kör Flask run 
 # men vi vill få den från front-enden. Sparar ändå koden i fall
 # den kan användas för att få en ny kod jwt till testning2
-
 '''
 try:
     url = 'https://wom-project1.azurewebsites.net/users/login'  
@@ -56,9 +61,67 @@ def index():
         return 'Stugunderhållstjänsten'
 
 
+# Få och skapa bokningar
+@app.route("/orders", methods = ['GET', 'POST'])
+def orders():
+    ret = [] 
+
+    if request.method == 'GET':
+        # Loopa varje rad i service-tabellen och lägg till i ret
+        for o in Order.query.all():
+            ret.append({ 
+                'id': o.id,
+                'order_date': o.order_date, 
+                'services_id': o.services_id 
+                })
+
+    if request.method == 'POST':
+        try:
+            body = request.get_json()
+
+            new_order = Order(
+                order_date=body['order_date'],
+                services_id = body['services_id']
+                )
+            db.session.add(new_order)
+            db.session.commit()
+
+            ret = ["Added an order for the chosen service!"]
+        except:
+            return "There is no such service id!"
+
+
+    return jsonify(ret)
+
+#Ändra eller radera en viss bokning
+@app.route("/orders/<int:id>", methods=['DELETE', 'PUT'])
+def getOrderById(id):
+    if request.method == 'DELETE':
+        order_to_delete = Order.query.get(id)
+
+        try: 
+            db.session.delete(order_to_delete)
+            db.session.commit()
+            return 'You just deleted an order'
+
+        except:
+            return "There was an error deleting"
+
+    if request.method == 'PUT':
+        order_to_update = Order.query.get(id)
+        body = request.get_json()
+
+        try:
+            order_to_update.order_date = body['order_date']
+            db.session.commit()
+            return 'You just updated an order'
+
+        except:
+            return 'There was an error editing the order'
+
 
 #Hämta användarens stugor från Projekt 1 
-@app.route("/cabins/owned")
+@app.route("/cabins")
 def cabins():
     print("GET My cabins")
     url = 'https://wom-project1.azurewebsites.net/cabins/owned'
@@ -78,7 +141,6 @@ def services():
     ret = [] 
 
     if request.method == 'GET':
-        # Loopa varje rad i service-tabellen och lägg till i ret
         for s in Services.query.all():
             ret.append({ 
                 'id': s.id,
@@ -87,13 +149,13 @@ def services():
                 })
         
     if request.method == 'POST':
-        body = request.get_json()
+            body = request.get_json()
 
-        new_service = Services(service=body['service'])
-        db.session.add(new_service)
-        db.session.commit()
+            new_service = Services(service=body['service'])
+            db.session.add(new_service)
+            db.session.commit()
 
-        ret = ["Added a new service "]
+            ret = ["Added a new service "]
 
     return jsonify(ret)
 

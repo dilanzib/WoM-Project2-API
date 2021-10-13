@@ -9,8 +9,32 @@
 GET {{baseUrl}}
 
 ### Får stugorna från Projekt1 - API
-GET {{baseUrl}}/cabins/owned
+GET {{baseUrl}}/cabins
 Authorization: {{token}}
+
+### Hämta alla bokningar
+GET {{baseUrl}}/orders
+
+### Göra en bokning
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "order_date": "December",
+  "services_id": "8"  
+}
+
+###Radera en bokning
+DELETE  {{baseUrl}}/orders/3
+
+
+###Ändra en bokning
+PUT {{baseUrl}}/orders/1
+Content-Type: application/json
+
+{
+  "order_date": "April"
+}
 
 
 ### 
@@ -21,18 +45,18 @@ POST {{baseUrl}}/services
 Content-Type: application/json
 
 {
-  "service": "Eat dinner with the owner"  
+  "service": "Drinking"  
 }
 
 ###
-PUT {{baseUrl}}/services/4
+PUT {{baseUrl}}/services/
 Content-Type: application/json
 
 {
-    "service": "Clean the garage"  
+    "service": "Carwashing"  
 }
 
 
 ### 
-DELETE {{baseUrl}}/services/2
+DELETE {{baseUrl}}/services/1
 
