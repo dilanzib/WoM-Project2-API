@@ -12,7 +12,7 @@ GET {{baseUrl}}
 GET {{baseUrl}}/cabins
 Authorization: {{token}}
 
-### Hämta alla bokningar
+### 
 GET {{baseUrl}}/orders
 
 ### Göra en bokning
@@ -20,20 +20,20 @@ POST {{baseUrl}}/orders
 Content-Type: application/json
 
 {
-  "order_date": "December",
-  "services_id": "8"  
+  "order_date": "10-10-2021",
+  "services_id": "7"  
 }
 
 ###Radera en bokning
-DELETE  {{baseUrl}}/orders/3
+DELETE  {{baseUrl}}/orders/2
 
 
 ###Ändra en bokning
-PUT {{baseUrl}}/orders/1
+PUT {{baseUrl}}/orders/5
 Content-Type: application/json
 
 {
-  "order_date": "April"
+  "order_date": "02-10-2021" 
 }
 
 
@@ -45,18 +45,18 @@ POST {{baseUrl}}/services
 Content-Type: application/json
 
 {
-  "service": "Drinking"  
+  "service": "Cleaning the garden"  
 }
 
 ###
-PUT {{baseUrl}}/services/
+PUT {{baseUrl}}/services/7
 Content-Type: application/json
 
 {
-    "service": "Carwashing"  
+    "service": "Cleaning garden+garage"  
 }
 
 
 ### 
-DELETE {{baseUrl}}/services/1
+DELETE {{baseUrl}}/services/6
 

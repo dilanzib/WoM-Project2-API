@@ -32,9 +32,8 @@ class Services(db.Model):
 #Order datamodell 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    order_date = db.Column(db.String(), nullable=False) 
+    order_date = db.Column(db.DateTime())
     services_id = db.Column(db.Integer, db.ForeignKey('services.id'))
-
 
 # Skapar automatiskt en inlogging till användaren "test@gmail.com" och ger ut en token när man kör Flask run 
 # men vi vill få den från front-enden. Sparar ändå koden i fall
@@ -81,14 +80,13 @@ def orders():
 
             new_order = Order(
                 order_date=body['order_date'],
-                services_id = body['services_id']
-                )
+                services_id = body['services_id'])
             db.session.add(new_order)
             db.session.commit()
 
             ret = ["Added an order for the chosen service!"]
         except:
-            return "There is no such service id!"
+            return "There was an error ordering!"
 
 
     return jsonify(ret)
@@ -133,6 +131,7 @@ def cabins():
     response = requests.get(url, headers=header)
     
     return jsonify(response.json())
+
 
 
 # Hämta och skapa services
