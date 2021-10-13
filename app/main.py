@@ -67,7 +67,6 @@ def cabins():
 
 
 
-
 # Hämta och skapa services
 @app.route("/services", methods = ['GET', 'POST'])
 def index():
@@ -126,8 +125,6 @@ def getServiceById(id):
 
 
 
-
-
-# Run app if called directly
+# Run app if it's called directly
 if __name__ == "__main__":
           app.run()
