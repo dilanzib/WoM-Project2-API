@@ -10,7 +10,7 @@ app = Flask(__name__)  # Instansierar Flask applikationen , _name__ = namnet på
 app.config['JSON_AS_ASCII'] = False     # Tillåt utf-8 i JSON
 
 # Konfiguration för SQLAlchemy 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DBB_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)   # Skapar databas instans
 
