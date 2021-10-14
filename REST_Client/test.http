@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
   "order_date": "10-10-2021",
-  "services_id": "7"  
+  "services_id": "3"  
 }
 
 ###Radera en bokning
@@ -29,7 +29,7 @@ DELETE  {{baseUrl}}/orders/2
 
 
 ###Ändra en bokning
-PUT {{baseUrl}}/orders/5
+PUT {{baseUrl}}/orders/1
 Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ POST {{baseUrl}}/services
 Content-Type: application/json
 
 {
-  "service": "Cleaning the garden"  
+  "service": "Eating" 
 }
 
 ###
