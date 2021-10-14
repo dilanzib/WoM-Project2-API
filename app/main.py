@@ -25,6 +25,7 @@ class Services(db.Model):
     service = db.Column(db.String(), nullable=False)
     updated_at = db.Column(db.DateTime(), default=db.func.now(), onupdate=db.func.now())
     orders = db.relationship('Order', backref='services')
+    cabin_id = db.Column(db.String())
 
     def __refr__(self):
         return '<Services {}>'.format(self.service)
@@ -34,6 +35,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_date = db.Column(db.DateTime())
     services_id = db.Column(db.Integer, db.ForeignKey('services.id'))
+    cabin_id = db.Column(db.String())
 
 # Skapar automatiskt en inlogging till användaren "test@gmail.com" och ger ut en token när man kör Flask run 
 # men vi vill få den från front-enden. Sparar ändå koden i fall
