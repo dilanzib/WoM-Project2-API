@@ -21,15 +21,16 @@ Content-Type: application/json
 
 {
   "order_date": "10-10-2021",
-  "services_id": "3"  
+  "services_id": "1",
+  "cabin_id": "61669ab86044ac9efec4d295"
 }
 
 ###Radera en bokning
-DELETE  {{baseUrl}}/orders/2
+DELETE  {{baseUrl}}/orders/5
 
 
 ###Ändra en bokning
-PUT {{baseUrl}}/orders/1
+PUT {{baseUrl}}/orders/3
 Content-Type: application/json
 
 {

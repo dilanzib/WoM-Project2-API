@@ -73,7 +73,8 @@ def orders():
             ret.append({ 
                 'id': o.id,
                 'order_date': o.order_date, 
-                'services_id': o.services_id 
+                'services_id': o.services_id,
+                'cabin_id': o.cabin_id 
                 })
 
     if request.method == 'POST':
@@ -82,7 +83,8 @@ def orders():
 
             new_order = Order(
                 order_date=body['order_date'],
-                services_id = body['services_id'])
+                services_id = body['services_id'],
+                cabin_id = body['cabin_id'])
             db.session.add(new_order)
             db.session.commit()
 
