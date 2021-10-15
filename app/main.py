@@ -3,6 +3,7 @@ from flask import Flask, json, jsonify, request
 from dotenv import load_dotenv # har samma funktion som dotenv i Node.js dvs. automatiskt laddar env variablerna hit 
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm.query import Query
 
 load_dotenv()  # Load variables from .env
 
@@ -37,6 +38,10 @@ class Order(db.Model):
     services_id = db.Column(db.Integer, db.ForeignKey('services.id'))
     cabin_id = db.Column(db.String())
 
+    def __refr__(self):
+        return '<Orders {}>'.format(self.id)
+
+
 # Skapar automatiskt en inlogging till användaren "test@gmail.com" och ger ut en token när man kör Flask run 
 # men vi vill få den från front-enden. Sparar ändå koden i fall
 # den kan användas för att få en ny kod jwt till testning2
@@ -61,6 +66,23 @@ def index():
     if request.method == 'GET':
         return 'Stugunderhållstjänsten'
 
+
+# Få en  order by ID
+@app.route("/orders/<int:id>", methods = ['GET'])
+def cab(id):
+    ret = []
+    if request.method == 'GET':
+        #User.query.filter_by(username='peter')
+        order_to_show = Order.query.get(id)
+        try:
+            ret.append({
+            'cabinID': order_to_show.cabin_id,
+            'serviceID': order_to_show.services_id
+            })
+        except:
+            ret = ["error"]
+
+    return jsonify(ret)
 
 # Få och skapa bokningar
 @app.route("/orders", methods = ['GET', 'POST'])
@@ -94,6 +116,8 @@ def orders():
 
 
     return jsonify(ret)
+
+
 
 #Ändra eller radera en viss bokning
 @app.route("/orders/<int:id>", methods=['DELETE', 'PUT'])

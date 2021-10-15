@@ -15,6 +15,7 @@ Authorization: {{token}}
 ### 
 GET {{baseUrl}}/orders
 
+
 ### Göra en bokning
 POST {{baseUrl}}/orders
 Content-Type: application/json
@@ -25,12 +26,16 @@ Content-Type: application/json
   "cabin_id": "61669ab86044ac9efec4d295"
 }
 
+###
+GET {{baseUrl}}/orders/10
+
+
 ###Radera en bokning
-DELETE  {{baseUrl}}/orders/5
+DELETE  {{baseUrl}}/orders/9
 
 
 ###Ändra en bokning
-PUT {{baseUrl}}/orders/3
+PUT {{baseUrl}}/orders/6
 Content-Type: application/json
 
 {
@@ -40,6 +45,7 @@ Content-Type: application/json
 
 ### 
 GET {{baseUrl}}/services
+
 
 ### 
 POST {{baseUrl}}/services

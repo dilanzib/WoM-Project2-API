@@ -22,3 +22,5 @@ Del3. Integrationsbit: en request som gör en andrahands request till Projekt1.
 Om man in den nya APIn kör GET /cabins med en giltig JWT token, så gör den en ny request till projekt1/cabins/owned och visar det innehållet.
 
 Del4. Front end till appen: Desktop app —> Electron.js
+
+
