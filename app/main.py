@@ -42,24 +42,6 @@ class Order(db.Model):
         return '<Orders {}>'.format(self.id)
 
 
-# Skapar automatiskt en inlogging till användaren "test@gmail.com" och ger ut en token när man kör Flask run 
-# men vi vill få den från front-enden. Sparar ändå koden i fall
-# den kan användas för att få en ny kod jwt till testning2
-'''
-try:
-    url = 'https://wom-project1.azurewebsites.net/users/login'  
-    header = { 'Content-Type': 'application/json' }
-    body = {  "email": "test@gmail.com",  "password": os.environ.get('CABINS_PASSWORD')}
-
-    response = requests.post(url, headers=header, json=body)
-
-    cabins_token = response.content.decode('utf-8')
-    print("Token: {}".format(response.content.decode('utf-8')))
-
-except Exception as e:
-    print(e)
-'''
-
 # Default route to / app
 @app.route("/", methods = ['GET'])
 def index():

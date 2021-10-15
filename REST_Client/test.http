@@ -1,6 +1,5 @@
-@baseUrl=http://127.0.0.1:5000
+@baseUrl=https://shielded-shelf-90510.herokuapp.com
 
-#https://shielded-shelf-90510.herokuapp.com
 #http://127.0.0.1:5000
 
 @token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MTY2OTlkMzcwMmQyNzdlOGE1YmQzMGQiLCJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNjM0MTQ2OTIwLCJleHAiOjE2MzkzMzA5MjB9.nhgJEjjxQFRwXqnsu5O9h0jfTPclGL2OHP7QvDO5oCI
@@ -27,7 +26,7 @@ Content-Type: application/json
 }
 
 ###
-GET {{baseUrl}}/orders/10
+GET {{baseUrl}}/orders/16
 
 
 ###Radera en bokning
@@ -56,7 +55,7 @@ Content-Type: application/json
 }
 
 ###
-PUT {{baseUrl}}/services/7
+PUT {{baseUrl}}/services/5
 Content-Type: application/json
 
 {
@@ -65,5 +64,5 @@ Content-Type: application/json
 
 
 ### 
-DELETE {{baseUrl}}/services/6
+DELETE {{baseUrl}}/services/5
 
