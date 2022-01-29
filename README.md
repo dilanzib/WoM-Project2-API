@@ -1,5 +1,5 @@
 # University course | 
-A school porject for maintenance service for cottages, built by me and Niklas. 
+A school project for maintenance service for cottages, built by me and Niklas. 
 The project is written in Python and the PostgreSQL database is used.
 
 
