@@ -1,5 +1,7 @@
-# University course
+# University course | 
 A school porject for maintenance service for cottages, built by me and Niklas. 
+REST API for maintenance services that is written in Python. 
+PostgreSQL database is used in this project. 
 
 
 
